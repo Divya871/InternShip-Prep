@@ -1,0 +1,32 @@
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        // code here
+         Node*dOdd=new Node(-1);
+         Node*dEven=new Node(-1);
+         
+         Node*odd=dOdd;
+         Node*even=dEven;
+       
+         
+        Node*curr=head;
+        while(curr!=NULL)
+        {
+            if(curr->data%2!=0)
+            
+        {
+            odd->next=curr;
+            odd=odd->next;
+            curr=curr->next;
+        }
+        else
+        {
+            even->next=curr;
+            even=even->next;
+            curr=curr->next;
+        }
+        
+        even->next=dOdd->next;
+        odd->next=NULL;}
+        return dEven->next;}
+        
