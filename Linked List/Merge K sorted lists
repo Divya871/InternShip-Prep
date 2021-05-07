@@ -1,0 +1,52 @@
+class Solution{
+  public:
+    //Function to merge K sorted linked list.
+    Node*mergetwolists(Node*l1,Node*l2)
+   {
+       
+       
+       Node*dummy=new Node(-1);
+       Node*prev=dummy;
+       while(l1!=NULL && l2!=NULL)
+       {
+           if(l1->data<=l2->data)
+           {
+               prev->next=l1;
+               prev=prev->next;
+               l1=l1->next;
+           }
+           else
+           {
+               prev->next=l2;
+               prev=prev->next;
+               l2=l2->next;
+           }
+       }
+       if(l1==NULL){prev->next=l2;}
+       if(l2==NULL){prev->next=l1;}
+       return dummy->next;}
+    
+   Node*mergeList(Node *arr[],int si,int ei)
+   {if(si==ei){return arr[si];}
+       int mid=(si+ei)/2;
+       Node*l1=mergeList(arr,si,mid);
+       Node*l2=mergeList(arr,mid+1,ei);
+       
+       return mergetwolists(l1,l2);
+   }
+   
+   
+   
+    Node * mergeKLists(Node *arr[], int K)
+    {
+           // Your code here
+           
+         
+         
+        if(K==0)
+        {
+            return NULL;
+        }
+        return mergeList(arr,0,K-1);}
+    
+};
