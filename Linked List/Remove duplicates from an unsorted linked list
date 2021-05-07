@@ -1,0 +1,56 @@
+TC=O(N^2)
+
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+    Node * removeDuplicates( Node *head) 
+    {
+     // your code goes here
+      if(head==NULL || head->next==NULL)
+        {
+            return head;
+        }
+        
+        Node*curr=head;
+        while(curr!=NULL && curr->next!=NULL)
+        {
+            while(curr->next!=NULL && curr->next->next!=NULL){
+                if(curr->next->data==curr->data)
+                {  curr->next=curr->next->next;
+                    curr=curr->next;
+                }
+                else{
+                curr=curr->next;
+            }}}
+    return head;
+        }
+        
+       
+       
+       
+  TC=O(N),SC=O(N)
+  
+   Node * removeDuplicates( Node *head) 
+    {
+     // your code goes here
+        unordered_set<int>map;
+        Node*curr=head;
+        Node*prev=NULL;
+        
+        while(curr!=NULL)
+        {
+            if(map.find(curr->data)!=map.end())
+            {
+                prev->next=curr->next;
+                 curr=curr->next;
+            }
+            else
+            {
+                map.insert(curr->data);
+                prev=curr;
+                curr=curr->next;
+            }
+        }
+        
+        return head;}
