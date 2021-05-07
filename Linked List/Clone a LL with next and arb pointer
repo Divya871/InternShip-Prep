@@ -1,0 +1,50 @@
+Node*copy(Node*head)
+{
+    Node*curr=head;
+    while(curr!=NULL)
+    {
+        Node*f=curr->next;
+        Node*node=new Node(curr->data);
+        curr->next=node;
+        node->next=f;
+        curr=f;
+    }
+    return head;
+}
+
+Node*setRandom(Node*head)
+{   Node*curr=head;
+    while(curr!=NULL)
+{
+    if(curr->arb!=NULL)
+    {
+        curr->next->arb=curr->arb->next;
+    }
+    curr=curr->next->next;
+}
+return head;
+}
+
+Node*extractLL(Node*head)
+{   Node*curr=head;
+    Node*dummy=new Node(-1);
+    Node*copyCurr=dummy;
+    
+    while(curr!=NULL)
+    {
+        copyCurr->next=curr->next;
+        curr->next=curr->next->next;
+        curr=curr->next;
+        copyCurr=copyCurr->next;
+     }
+     return dummy->next;
+    
+}
+Node *copyList(Node *head) {
+    // Your code here
+    if(head==NULL){return head;}
+    copy(head);
+    setRandom(head);
+    return extractLL(head);
+    
+}
