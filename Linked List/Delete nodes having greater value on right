@@ -1,0 +1,46 @@
+class Solution
+{
+    public:
+    Node*reverseList(Node*head)
+    {
+        Node*prev=NULL;
+        Node*curr=head;
+        Node*n;
+        while(curr!=NULL)
+        {
+            n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+        }
+        head=prev;
+        return head;
+    }
+    Node *compute(Node *head)
+    {
+        // your code goes here
+       head=reverseList(head);
+        Node*temp;
+        Node*curr=head;
+        Node*maxNode=head;
+        
+        while(curr!=NULL && curr->next!=NULL)
+        {
+            if(curr->next->data<curr->data)
+            {
+                temp=curr->next;
+                curr->next=temp->next;
+            }
+            else
+            {
+                curr=curr->next;
+                maxNode=curr;
+            }
+        }
+        head= reverseList(head);
+        return head;
+       
+    }
+    
+};
+   
