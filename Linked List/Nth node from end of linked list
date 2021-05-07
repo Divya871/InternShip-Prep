@@ -1,1 +1,56 @@
-.
+.Node* get(Node*head,int n){
+    
+ Node*c1=head;
+    Node*c2=head;
+    while(n-->0)
+    {
+        c2=c2->next;
+    }
+    
+    if(c2==NULL)
+    {
+        Node*temp=head;
+        head=head->next;
+        temp->next=NULL;
+        return head ;
+    }
+    
+    while(c2->next!=NULL)
+    {
+        c1=c1->next;
+        c2=c2->next;
+    }
+    
+    Node*temp=c1->next;
+    c1->next=temp->next;
+    temp->next=NULL;
+    return temp;
+    
+}
+    
+    int len(Node*head)
+    {
+        Node*curr=head;
+     int count=0;
+     while(curr!=NULL)
+     {
+         count++;
+         curr=curr->next;
+         
+     }
+     return count;
+    }
+    
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+    int length=len(head);
+    if(n==length){
+        return head->data;
+    }
+    if(n>length){return -1;}
+    
+  Node*ans=get(head,n);
+    return ans->data;
+    }
+
