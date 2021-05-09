@@ -1,4 +1,36 @@
-.Node* get(Node*head,int n){
+.TC=O(N),SC=O(1)
+
+int length(Node*head)
+{
+    Node*curr=head;
+    int count=0;
+    while(curr!=NULL)
+    {
+        count++;
+        curr=curr->next;
+    }
+    return count;
+}
+
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       int len=length(head);
+       
+      Node*temp=head;
+       if(n>len){return -1;}
+       
+        for(int i=1;i<len-n+1;i++)
+        {
+            temp=temp->next;
+        }
+       return temp->data;
+     }
+
+
+TC=O(N),SC=O(1)
+
+Node* get(Node*head,int n){
     
  Node*c1=head;
     Node*c2=head;
