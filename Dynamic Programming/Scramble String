@@ -1,68 +1,90 @@
-=====MEMO CODE====
+TC=O(N^2)
 
-class Solution {
-public:
- 
-    
-   bool isScramble(const string s1, const string s2) {
-   
-         int n=s1.length();
-        if(s1.length()!=s2.length()){return false;}
-       if(n==0){return true;}
-        if(s1==s2){return true;}
-        if(s1.length()<=1){return false;}
-       
-        
-     
-        
-        for(int i=1;i<n;i++)
+
+int one(string &s,string &t,int N,int M,vector<vector<int>>&dp)
+     { for(int n=0;n<=N;n++)
+     {
+         for(int m=0;m<=M;m++)
+         {
+         if(n==0 || m==0)
+         {
+             dp[n][m]=(n==0)?m:n;
+             continue;
+         }
+         
+         
+         int insert=dp[n][m-1];
+         int del=dp[n-1][m];
+         int replace=dp[n-1][m-1];
+         
+         if(s[n-1]==t[m-1])
+         {
+             dp[n][m]=replace;
+         }
+         else
+         {
+         dp[n][m]=min(min(insert,del),replace)+1;
+     }}}
+         return dp[N][M];}
+
+    bool isOneEditDistance(string &s, string &t) {
+        // write your code here
+        int n=s.length();
+        int m=t.length();
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        int ans=one(s,t,n,m,dp);
+        if(ans==1)
         {
-           if (isScramble(s1.substr(0, i), s2.substr(0, i)) && isScramble (s1.substr(i, n - i), s2.substr(i, n - i)))
-               {
             return true;
-        }      
-                if (isScramble(s1.substr(0, i),s2.substr(n - i, i)) && isScramble(s1.substr(i, n - i), s2.substr(0, n - i)))
-               {
-            return true;
-        }}
-               return false;}
-};
-              
-
-
-====OPTI===
-
-
-unordered_map<string,bool>map;
-    bool solve(const string s1, const string s2)
-    {
-        if(s1.size()==1)
-  {
-      return s1==s2;
-  }
-       if(s1==s2){return true;}
-        string key=s1+s2;
-        
-        if(map.find(key)!=map.end())
-        {
-            return map[key];
         }
-        int n=s1.size();
-         for(int i=1;i<n;i++)
+        else{
+            return false;
+        }
+
+    }
+};
+
+
+TC=O(N),SC=O(1)
+bool isOneEditDistance(string &s, string &t) {
+      
+    int m = s.length(), n = t.length();
+   if (abs(m - n) > 1)
+        return false;
+  
+    int count = 0; 
+  
+    int i = 0, j = 0;
+    while (i < m && j < n)
+    {
+         if (s[i] != t[j])
         {
-           if (solve(s1.substr(0, i), s2.substr(0, i)) && solve (s1.substr(i, n - i), s2.substr(i, n - i)))
-               {
-            return true;
-        }      
-                if (solve(s1.substr(0, i),s2.substr(n - i, i)) && solve(s1.substr(i, n - i), s2.substr(0, n - i)))
-               {
-            return map[key]=true;
-        }}
-               return map[key]=false;}
+            if (count == 1)
+                return false;
+  
+            if (m > n)
+                i++;
+            else if (m< n)
+                j++;
+            else
+            {
+                i++;
+                j++;
+            }
               
-    
-   bool isScramble(const string s1, const string s2) {
-      int n=s1.size();
-       return solve(s1,s2);
-        
-   }};
+         count++;
+        }
+  
+        else 
+        {
+            i++;
+            j++;
+        }
+    }
+  
+     if (i < m || j < n)
+        count++;
+  
+    return count==1;
+
+    }
