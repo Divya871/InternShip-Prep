@@ -1,3 +1,27 @@
+===RECURSIVE CODE====
+
+int dp[100][100][100];
+
+int LCSof3(string X,string Y,string Z,int i, int j,int k)
+{ memset(dp, -1,sizeof(dp));
+    if(i==-1||j==-1||k==-1)
+        return 0;
+    if(dp[i][j][k]!=-1)
+        return dp[i][j][k];
+     
+    if(X[i]==Y[j] && Y[j]==Z[k])
+        return dp[i][j][k] = 1+LCSof3(X,Y,Z,i-1,j-1,k-1);
+    else
+        return dp[i][j][k] = max(max(LCSof3(X,Y,Z,i-1,j,k),
+                            LCSof3(X,Y,Z,i,j-1,k)),LCSof3(X,Y,Z,i,j,k-1));
+}
+ 
+    
+    return L[m][n][o];
+}
+
+===DP CODE====
+
 int LCSof3( string X, string Y, string Z, int m,
                                int n, int o){
  int L[m+1][n+1][o+1];
