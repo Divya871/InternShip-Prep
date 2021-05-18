@@ -1,0 +1,95 @@
+====MEMO CODE====
+
+class Solution{
+public:
+    bool isPalindrome(string &str,int i,int j)
+    {
+        while(i<j)
+        {
+            if(str[i]!=str[j]){return false;}
+            i++;j--;
+        }
+        return true;
+        }
+    
+    int pp(string &str,int i,int j,vector<vector<int>>&dp)
+    {
+        if(i>=j || isPalindrome(str,i,j)){return dp[i][j]=0;}
+        
+        if(dp[i][j]!=-1){return dp[i][j];}
+         int min=INT_MAX;
+         
+        for(int k=i;k<j;k++)
+        {
+            int tempans=pp(str,i,k,dp)+pp(str,k+1,j,dp)+1;
+            if(tempans<min)
+            {
+                min=tempans;
+            }
+        }
+        return dp[i][j]=min;
+    }
+    
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+        return pp(str,0,n-1,dp);
+    }
+};
+
+
+=====Better CODE=====
+
+ bool isPalindrome(string &str,int i,int j)
+    {
+        while(i<j)
+        {
+            if(str[i]!=str[j]){return false;}
+            i++;j--;
+        }
+        return true;
+        }
+    
+    int pp(string &str,int i,int j,vector<vector<int>>&dp)
+    {
+        if(i>=j || isPalindrome(str,i,j)){return dp[i][j]=0;}
+        
+        if(dp[i][j]!=-1){return dp[i][j];}
+         int min=INT_MAX;int left=0,right=0;
+         
+        for(int k=i;k<j;k++)
+        {
+            if(dp[i][k]!=-1)
+            {left=dp[i][k];}
+            else
+            {left=pp(str,i,k,dp);
+                dp[i][k]=left;
+            }
+            
+            if(dp[k+1][j]!=-1)
+            {
+                right=dp[k+1][j];
+            }
+            else {right=pp(str,k+1,j,dp);
+                   dp[k+1][j]=right;}
+                   
+                   int tempans=1+left+right;
+            
+            if(tempans<min)
+            {
+                min=tempans;
+            }
+        }
+        return dp[i][j]=min;
+    }
+    
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+        return pp(str,0,n-1,dp);
+    }
+
