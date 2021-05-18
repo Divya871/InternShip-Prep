@@ -34,10 +34,7 @@ int main()
 }
 
 ====Memo COde====
-class Solution{
-public:
-int dp[100][100];
-int matrixChainMemoised(int* p, int i, int j)
+int matrixChainMemoised(int* p, int i, int j,vector<vector<int>>&dp)
 {
     if (i >= j) 
     {
@@ -51,8 +48,8 @@ int matrixChainMemoised(int* p, int i, int j)
     for (int k = i; k <=j-1; k++) 
     {
         dp[i][j] = min(
-            dp[i][j], matrixChainMemoised(p, i, k)
-                     + matrixChainMemoised(p, k + 1, j)
+            dp[i][j], matrixChainMemoised(p, i, k,dp)
+                     + matrixChainMemoised(p, k + 1, j,dp)
                        + p[i - 1] * p[k] * p[j]);
     }
     return dp[i][j];
@@ -61,8 +58,6 @@ int matrixChainMemoised(int* p, int i, int j)
     {
         // code here
     
-memset(dp, -1, sizeof dp);
-        return matrixChainMemoised(p,1,N-1);
+        vector<vector<int>>dp(N+1,vector<int>(N+1,-1));
+        return matrixChainMemoised(p,1,N-1,dp);
     }
-};
-
