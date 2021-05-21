@@ -1,3 +1,26 @@
+TC=O(N^2),SC=O(1)
+
+ vector<long long> nextLargerElement(vector<long long> arr, int n){
+        // Your code here
+        int next, i, j;
+    for (i = 0; i < n; i++)
+    {
+        next = -1;
+        for (j = i + 1; j < n; j++)
+        {
+            if (arr[i] < arr[j])
+            {
+                next = arr[j];
+                break;
+            }
+        }
+        cout  << next << endl;
+    }}
+
+
+
+TC=O(n),SC=O(n)
+
 vector<long long> nextLargerElement(vector<long long> arr, int n){
         // Your code here
         stack<long long>st;
