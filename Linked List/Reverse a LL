@@ -1,0 +1,29 @@
+TC=O(n)
+
+ListNode* reverseList(ListNode* head) {
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        ListNode*n;
+        while(curr!=NULL)
+        {
+            n=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=n;
+        }
+        head=prev;
+        return prev;
+    }
+    
+    
+ ===RECURSIVE====
+ 
+ ListNode* reverseList(ListNode* head) {
+        
+        if(head== NULL || head->next==NULL){return head;}
+       ListNode*temp=head->next;
+        head->next=NULL;
+        ListNode*r=reverseList(temp);
+        temp->next=head;
+        return r;
+    }
