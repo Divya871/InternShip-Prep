@@ -14,4 +14,34 @@ TC=(NlogK)
     
     TC=O(N+klogN)
     
+     void swap(vector<int>&arr,int i,int j)
+    {
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    void downheapify(vector<int>&arr,int pi,int li)
+    {
+        int maxIdx=pi,lci=2*pi+1,rci=2*pi+2;
+        if(lci<=li && arr[lci]>arr[maxIdx]){maxIdx=lci;}
+         if(rci<=li && arr[rci]>arr[maxIdx]){maxIdx=rci;}
+        if(maxIdx!=pi)
+        {
+            swap(arr,pi,maxIdx);
+            downheapify(arr,maxIdx,li);
+        }
+ }
+    int findKthLargest(vector<int>& arr, int k) {
+        int li=arr.size()-1;
+        for(int i=li;i>=0;i--)
+        {downheapify(arr,i,li);}
+            while(k-->1)
+            {
+                swap(arr,0,li--);
+                downheapify(arr,0,li);
+            }
+        return arr[0];
+        
+    }
+    
     
