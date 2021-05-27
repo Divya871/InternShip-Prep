@@ -1,0 +1,53 @@
+vector<int> LIS_LR(vector<int> &arr) {
+        int n = arr.size();
+        vector<int> dp (n);
+        int len = 0;
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1;
+            for (int j = i - 1; j >= 0; j--) {
+                if (arr[j] < arr[i]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+
+            len = max(len, dp[i]);
+        }
+
+        return dp;
+    }
+
+    // LDS
+    vector<int> LIS_RL(vector<int> &arr) {
+        int n = arr.size();
+        vector<int>dp(n);
+        int len = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            dp[i] = 1;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[i]) {
+                    dp[i] = max(dp[i], dp[j] + 1);
+                }
+            }
+
+            len = max(len, dp[i]);
+        }
+
+        return dp;
+    }
+
+   
+	int LongestBitonicSequence(vector<int>arr)
+	{
+	    
+	    
+        vector<int> LIS = LIS_LR(arr);
+        vector<int> LDS = LIS_RL(arr);
+
+        int len = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            len = max(len, LIS[i] + LDS[i] - 1);
+        }
+
+        return len;
+    
+	}
