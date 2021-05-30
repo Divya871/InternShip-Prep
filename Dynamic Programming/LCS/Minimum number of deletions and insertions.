@@ -1,4 +1,9 @@
-	  int lcs_memo(string text1,string text2,int N,int M,vector<vector<int>>&dp)
+	 BRUTEFORCE---TC=exponential
+	 
+	 Saare subsequence nikal lo str1 ke then str 1 mein min no of deletion and insertion perform kro to make equal to str2.
+	 
+	 
+	 int lcs_memo(string text1,string text2,int N,int M,vector<vector<int>>&dp)
     {   for(int n=0;n<=N;n++)
     {
         for(int m=0;m<=M;m++)
