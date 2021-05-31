@@ -1,6 +1,6 @@
 # InternShip Preparation
 Leetcode Profile- https://leetcode.com/divyayadav/
-Gfg Profile- https://auth.geeksforgeeks.org/user/dkdivya252002/practice/
+### Gfg Profile- https://auth.geeksforgeeks.org/user/dkdivya252002/practice/
 _This repository consists Solution to Faang List,Faang List-2.0 and Love Babaar Sheet._
 
 ### 1.  🔅LinkedList 🔅✔
