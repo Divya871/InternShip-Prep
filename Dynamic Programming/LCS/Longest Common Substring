@@ -1,3 +1,7 @@
+ TC=O(N*M^2)
+ Find all substring of first substring and check whether they match second substring.
+ 
+ TC=O(M*N),SC=O(M*N)
  int lcs_memo(string S1,string S2,int N,int M,vector<vector<int>>&dp)
     { int res=0;
         for(int n=0;n<=N;n++)
