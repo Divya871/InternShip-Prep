@@ -1,4 +1,41 @@
- int longest_memo(string &s,int I,int J,vector<vector<int>>&dp)
+TC=O(2^N)
+Generate all palindromic subsequence and find which has longest length.
+
+TC=O(N^2),SC=O(N^2)
+class Solution {
+public:
+  int longest_memo(string &s,int i,int j,vector<vector<int>>&dp)
+  {   
+      if(i>=j)
+      {
+          return dp[i][j]=(i==j) ? 1:0;
+      }
+      
+      if(dp[i][j]!=-1)
+      {
+          return dp[i][j];
+      }
+      if(s[i]==s[j])
+      {
+          return dp[i][j]=longest_memo(s,i+1,j-1,dp)+2;
+      }
+      
+       return dp[i][j]=max(longest_memo(s,i+1,j,dp),longest_memo(s,i,j-1,dp));
+                           
+  }
+
+int longestPalindromeSubseq(string &s)
+{
+    int n=s.length();
+    vector<vector<int>>dp(n,vector<int>(n,-1));
+    return longest_memo(s,0,n-1,dp);
+    
+}
+
+};
+
+TC=O(N^2),SC=O(N^2)
+ int longest_tabu(string &s,int I,int J,vector<vector<int>>&dp)
     {      int n=s.length();
           for(int gap=0;gap<n;gap++)
            {
@@ -23,7 +60,7 @@
     int longestPalindromeSubseq(string s) {
         int n=s.length();
         vector<vector<int>>dp(n,vector<int>(n));
-        return longest_memo(s,0,n-1,dp);
+        return longest_tabu(s,0,n-1,dp);
         
     }
 };
