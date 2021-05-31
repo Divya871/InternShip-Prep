@@ -1,4 +1,4 @@
-# Placement-Diaries
+# InternShip Preparation
 _This repository consists Solution to Faang List,Faang List-2.0 and Love Babaar Sheet._
 
 ### 1.  🔅LinkedList 🔅✔
