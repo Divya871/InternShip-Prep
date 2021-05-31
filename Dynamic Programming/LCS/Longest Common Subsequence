@@ -1,5 +1,36 @@
+ TC=O(n*2^n)
+ Find all the subsequences and check which are common.
  
-    int lcs_memo(string text1,string text2,int N,int M,vector<vector<int>>&dp)
+ TC=O(2^n)
+ Recursive Approach
+ 
+ TC=O(M*N),SC=O(M*N)---MEMO CODE
+ int lcs_memo(string text1,string text2,int n,int m,vector<vector<int>>&dp)
+    {    if(n==0 || m==0)
+    {
+        return dp[n][m]=0;
+    }
+     if(dp[n][m]!=-1){return dp[n][m];}
+        if(text1[n-1]==text2[m-1])
+        {
+            dp[n][m]=lcs_memo(text1,text2,n-1,m-1,dp)+1;
+        }
+        else
+        {
+            dp[n][m]=max(lcs_memo(text1,text2,n-1,m,dp),lcs_memo(text1,text2,n,m-1,dp));
+        }
+        return dp[n][m];
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        int n=text1.length();
+        int m=text2.length();
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        return lcs_memo(text1,text2,n,m,dp);
+    }
+};
+
+TC=O(M*N),SC=O(M*N)
+int lcs_tabu(string text1,string text2,int N,int M,vector<vector<int>>&dp)
     {   for(int n=0;n<=N;n++)
     {
         for(int m=0;m<=M;m++)
@@ -24,5 +55,7 @@
         int n=text1.length();
         int m=text2.length();
         vector<vector<int>>dp(n+1,vector<int>(m+1));
-        return lcs_memo(text1,text2,n,m,dp);
+        return lcs_tabu(text1,text2,n,m,dp);
     }
+    
+    
