@@ -1,0 +1,23 @@
+TC=O(N),SC=O(1)
+int findMax(struct node* root)
+{
+// Your code goes here
+ if (root == NULL)
+        return INT_MIN;
+     int res = root->data;
+    int lres = findMax(root->left);
+    int rres = findMax(root->right);
+   return max(max(lres,rres),res);
+
+}
+
+
+int findMin(struct node* root)
+{if (root == NULL)
+      return INT_MAX;
+
+     int res = root->data;
+    int lres = findMin(root->left);
+    int rres = findMin(root->right);
+    return min(min(lres,rres),res);
+}
