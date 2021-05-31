@@ -1,7 +1,11 @@
-This Repositry consists of Pepcoding Faang List 1, Faang List 2 and Love Babbar Sheet Solutions
+# Placement-Diaries
+_This repository consists Solution to Faang List,Faang List-2.0 and Love Babaar Sheet._
 
-TOPICS COMPLETED
+### 1.  🔅LinkedList 🔅✔
+### 2.  🔅Stacks     🔅✔
+### 3.  🔅Queues     🔅✔
+### 4.  🔅Heaps      🔅✔
+### 5.  🔅Dynamic Programming🔅✔
+### 6.  🔅Binary Trees🔅 👀
 
-🔅LINKED LIST🔅
-🔅STACKS🔅
-🔅QUEUES🔅
+
