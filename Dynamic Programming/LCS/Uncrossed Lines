@@ -1,0 +1,5 @@
+TC=O(M*2^N),SC=O(1)
+Generate all the subsequences of array A and find them in B so that the two subsequences can be connected by joining in straight lines.The Longest common subsequence found wouls have maximum number of uncrossed lines.
+
+TC=O(M*N),SC=O(M*N)
+Simply LCS lagao.
