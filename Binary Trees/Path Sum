@@ -1,4 +1,5 @@
- bool hasPathSum(TreeNode* root, int targetSum) {
+TC=O(N)
+bool hasPathSum(TreeNode* root, int targetSum) {
     if (root == nullptr)
             return false;
         if (root->left == nullptr && root->right == NULL)
@@ -6,3 +7,4 @@
 
         return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
     }};
+
