@@ -1,3 +1,8 @@
+TC is exponnetial
+
+Remove subsequence one by one and check whether remaninig string is palindrome or not.
+
+TC=O(N^2)
 int longest_memo(string &S,int I,int J,vector<vector<int>>&dp)
     {      int n=S.length();
           for(int gap=0;gap<n;gap++)
@@ -30,3 +35,5 @@ int longest_memo(string &S,int I,int J,vector<vector<int>>&dp)
         int ans=longest_memo(S,0,n-1,dp);
         return n-ans;
     } 
+
+
