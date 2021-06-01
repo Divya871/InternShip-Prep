@@ -1,0 +1,33 @@
+TC=O(N)
+
+bool rootToPath(TreeNode*node,TreeNode*data,vector<TreeNode*>&ans)
+     {
+         if(node==NULL){return false ;}
+         if(node==data){ans.push_back(node);return true;}
+         
+         bool res=rootToPath(node->left,data,ans)|| rootToPath(node->right,data,ans);
+         if(res)
+         {
+             ans.push_back(node);
+         }
+         return res;
+     }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    {
+        vector<TreeNode*>list1;
+        vector<TreeNode*>list2;
+    
+        rootToPath(root,p,list1);
+        rootToPath(root,q,list2);
+        TreeNode*LCA=NULL;
+        int i=list1.size()-1;int j=list2.size()-1;
+        while(i>=0 && j>=0)
+        {
+            if(list1[i]!=list2[j])
+            {break;}
+            LCA=list1[i];
+            i--;j--;
+            
+        }
+        return LCA;
+         }
