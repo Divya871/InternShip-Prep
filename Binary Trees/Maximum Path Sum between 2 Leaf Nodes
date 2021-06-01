@@ -1,0 +1,31 @@
+TC=O(N^2)
+--->Find max sum from leaf to root in left subtree and right subtree
+--->Add Maximum value of left and right subtree to root->val and update maximum and return it.
+
+TC=O(N)
+int maxleaf=-(int)1e9;
+    int maxPathSum_(Node*root )
+    {
+        if(root==NULL){return -(int)1e9;}
+        if(root->left==NULL && root->right==NULL){return root->data;}
+        
+        int left=maxPathSum_(root->left);
+        int right=maxPathSum_(root->right);
+        
+        if(root->left!=NULL && root->right!=NULL)
+        {maxleaf=max(maxleaf,left+right+root->data);}
+        return max(left,right)+root->data;
+        if(root->left!=NULL)
+        {
+            return root->data;
+        }
+        if(root->right!=NULL){return root->data;}
+    }
+        
+        int maxPathSum(Node*root)
+        {
+            
+           if (root == nullptr)
+            return INT_MIN;
+            maxPathSum_(root);
+             return maxleaf;  }
