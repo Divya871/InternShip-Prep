@@ -1,0 +1,116 @@
+int burnTreeUtil(Node* root, int target, queue<Node*>& q)
+{
+   
+    if (root == NULL) {
+        return 0;
+    }
+ ------------------ROOT TARGET KE EQUAL HAI TOH RETURN 1 AND USKE LEFT OR RIGHT CHILD DAAL DO QUEUE MEIN------------
+      if (root->key == target) {
+        cout << root->key << endl;
+        if (root->left != NULL) {
+            q.push(root->left);
+        }
+        if (root->right != NULL) {
+ 
+            q.push(root->right);
+        }
+      return 1;
+    }
+ 
+    int a = burnTreeUtil(root->left, target, q);
+    
+ --------------AGAR A=1 HAI TOH JAB TAK QUEUE KA SIZE=0 NAHI HOTA TAB TAK PRINT KRTE RHO OR AGAR USKE CHILDS H TOH PRINT THEM----------
+    if (a == 1) {
+        int qsize = q.size();
+       while (qsize--) {
+            Node* temp = q.front();
+ 
+            
+            cout << temp->key << " , ";
+            q.pop();
+ 
+           
+            if (temp->left != NULL)
+                q.push(temp->left);
+ 
+          
+            if (temp->right != NULL)
+                q.push(temp->right);
+        }
+ 
+        if (root->right != NULL)
+            q.push(root->right);
+ 
+        cout << root->key << endl;
+ 
+     
+        return 1;
+    }
+ 
+    int b = burnTreeUtil(root->right, target, q);
+ ------------------------------------------------------SAME AS A=1---------------------------------------------
+    if (b == 1) {
+        int qsize = q.size();
+      
+ 
+        while (qsize--) {
+            Node* temp = q.front();
+ 
+           
+            cout << temp->key << " , ";
+            q.pop();
+ 
+        
+            if (temp->left != NULL)
+                q.push(temp->left);
+ 
+           
+            if (temp->right != NULL)
+                q.push(temp->right);
+        }
+ 
+        if (root->left != NULL)
+            q.push(root->left);
+ 
+        cout << root->key << endl;
+ 
+       
+        return 1;
+    }
+}
+
+------------------------------------------AAKHRI MEIN JAB QUEUE KHALI NA RHEE TOH NIKALKR PRINT KRDO--------------------------
+
+void burnTree(Node* root, int target)
+{
+    queue<Node*> q;
+ 
+  
+    burnTreeUtil(root, target, q);
+ 
+ 
+    while (!q.empty()) {
+        int qSize = q.size();
+        while (qSize > 0) {
+            Node* temp = q.front();
+ 
+            cout << temp->key;
+          
+            if (temp->left != NULL) {
+                q.push(temp->left);
+            }
+           
+            if (temp->right != NULL) {
+                q.push(temp->right);
+            }
+ 
+            if (q.size() != 1)
+                cout << " , ";
+ 
+            q.pop();
+            qSize--;
+        }
+        cout << endl;
+    }
+}
+ 
