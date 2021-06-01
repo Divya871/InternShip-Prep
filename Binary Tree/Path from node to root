@@ -1,0 +1,9 @@
+bool rootToNodepath(Node*node,Node*data,vector<Node*>ans
+{
+  if(node==NULL){return false;}
+  if(node->data==data){ans.push_back(node);return true;}
+  bool res= rootToNodepath(node->left,data,ans) || rootToNodepath(root->right,data,ans);
+  if(res)
+  {  ans.push_back(node);  }
+  return res;}
+     
