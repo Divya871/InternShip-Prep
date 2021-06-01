@@ -1,0 +1,16 @@
+ int climbStairs_dp(int N,vector<int>&dp)
+   {   for(int n=0;n<=N;n++){
+       if(n<=1)
+       {
+            dp[n]=1;continue;
+       }
+      
+       
+       int ans=dp[n-1]+dp[n-2];
+       dp[n]=ans;
+   }
+    return dp[N];}
+int climbStairs(int n) {
+    vector<int>dp(n+1);
+        return climbStairs_dp(n,dp);
+}
