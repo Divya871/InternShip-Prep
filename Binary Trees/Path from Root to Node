@@ -1,0 +1,8 @@
+bool rootToNode(Node*node,Node*data,vector<Node*>ans)
+{ if(node==NULL) {return false;}
+ ans.push_back(node);
+ if(node->data==data){return true;}
+ res=rootToNode(node->left,data,ans) || rootToNode(node->right,data,ans);
+ {return true;}
+ ans.pop_back();
+ return false;}
