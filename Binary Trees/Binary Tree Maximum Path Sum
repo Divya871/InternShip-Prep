@@ -1,0 +1,27 @@
+class Solution
+{
+public:
+    int maxNTN = -(int) 1e9;
+
+     int maxPathSum_(TreeNode *node) {
+        if (node == nullptr)
+            return 0;
+
+        int leftMaxPathSum = maxPathSum_(node->left);
+        int rightMaxPathSum = maxPathSum_(node->right);
+
+        int maxSumTillRoot =max(leftMaxPathSum, rightMaxPathSum) + node->val;
+        maxNTN = max(max(maxNTN, maxSumTillRoot),
+            max(node->val, leftMaxPathSum + node->val + rightMaxPathSum));
+
+        return max(maxSumTillRoot, node->val);
+
+    }
+
+    int maxPathSum(TreeNode* root) {
+        if (root == nullptr)
+            return 0;
+
+        maxPathSum_(root);
+        return maxNTN;
+    }};
