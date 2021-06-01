@@ -1,3 +1,13 @@
+-----------CASES----------
+For each node there can be four ways that the max path goes through the node: 
+1. Node only 
+2. Max path through Left Child + Node 
+3. Max path through Right Child + Node 
+4. Max path through Left Child + Node + Max path through Right Child
+
+
+TC=O(N)
+
 class Solution
 {
 public:
