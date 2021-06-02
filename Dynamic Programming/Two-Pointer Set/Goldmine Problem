@@ -1,0 +1,78 @@
+=======================================================MEMO CODE==========================================TC=O(M*N),SC=O(M*N)
+
+#include<vector>
+int goldMine_memo(int r, int c, vector<vector<int>> mat, vector<vector<int>>dp, vector<vector<int>>dir) {
+        if (c == mat[0].size() - 1) {
+            return dp[r][c] = mat[r][c];
+        }
+
+        if (dp[r][c] != -1)
+            return dp[r][c];
+
+        int maxGold = 0;
+        for (int d = 0; d < 3; d++) {
+            int x = r + dir[d][0];
+            int y = c + dir[d][1];
+            if (x >= 0 && x < mat.size()) {
+                maxGold = max(maxGold, goldMine_memo(x, y, mat, dp, dir));
+            }
+        }
+
+        return dp[r][c] = maxGold + mat[r][c];
+    }
+    int maxGold(int n, int m, vector<vector<int>> M)
+    {
+        // code 
+          vector<vector<int>> dir = { { -1, 1 }, { 0, 1 }, { 1, 1 } };
+ vector<vector<int>>dp(M.size(),vector<int>(M[0].size(),-1));
+        
+          int maxGold = 0;
+        for (int i = 0; i < M.size(); i++) {
+            maxGold = max(maxGold, goldMine_memo(i, 0, M, dp, dir));
+        }
+        return maxGold;
+        
+    }
+    
+    
+    =======================TABU CODE=====================================
+    
+    int goldMine_dp(int R,int C,vector<vector<int>> &M, vector<vector<int>>&dp, vector<vector<int>>&dir) 
+    {  int n = M.size();
+        int m = M[0].size();
+
+        for (int c = m - 1; c >= 0; c--) {
+            for (int r = n - 1; r >= 0; r--) {
+  if (c == M[0].size() - 1) {
+             dp[r][c] = M[r][c];
+             continue;
+        }
+
+        
+        int maxGold = 0;
+        for (int d = 0; d < 3; d++) {
+            int x = r + dir[d][0];
+            int y = c + dir[d][1];
+            if (x >= 0 && x < n) {
+                maxGold = max(maxGold, dp[x][y]);
+            }
+        }
+
+        dp[r][c] = maxGold + M[r][c];}
+    }
+    int maxGold=0;
+        for(int i=0;i<M.size();i++)
+        {
+            maxGold=max(maxGold,dp[i][0]);
+        }
+    return maxGold;
+        
+    }
+    int maxGold(int n, int m, vector<vector<int>> M)
+    {
+        // code 
+          vector<vector<int>> dir = { { -1, 1 }, { 0, 1 }, { 1, 1 } };
+ vector<vector<int>>dp(M.size(),vector<int>(M[0].size(),-1));
+
+     return  goldMine_dp(n,m,M,dp,dir);}
+       
