@@ -1,5 +1,4 @@
 TC=O(N),SC=O(1)
-
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -18,7 +17,7 @@ struct Node* getNode(int data)
     return newNode;
 }
   
- /* bool hasPath(Node *root, vector<int>& arr, int x)
+ /* bool RootToNodePath(Node *root, vector<int>& arr, int x)
 {     if (root==NULL)
         {return false;}
       
@@ -37,7 +36,7 @@ struct Node* getNode(int data)
     return false;            
 }*/
   
-  bool hasPath(Node *root, vector<int>& arr, int x)
+  bool NodeToRootPath(Node *root, vector<int>& arr, int x)
 {     if (root==NULL)
         {return false;}
       
