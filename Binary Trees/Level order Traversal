@@ -1,5 +1,5 @@
 ======================================SIMPLE=====================
-TC=O(N^2),SC=O(N)
+TC=O(N^2),SC=O(N),for skewed tree,TC=O(N)
 /*Function to print level order traversal of tree*/
 printLevelorder(tree)
 
