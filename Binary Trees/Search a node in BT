@@ -1,0 +1,9 @@
+bool find(struct Node* node, int key)
+{
+    if (node == NULL)
+        return false;
+ 
+    if (node->data == key)
+        return true;
+ return find(node->left,key) || (node->right,key);
+}
