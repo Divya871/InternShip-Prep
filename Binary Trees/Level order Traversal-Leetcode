@@ -1,0 +1,31 @@
+vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>res;
+         if (root == nullptr)
+            return res;
+
+       queue<TreeNode*> q; 
+       vector<vector<int>>ans;
+        q.push(root);
+
+        int level = 0;
+        vector<int>extra;
+        while (q.size() != 0) {
+            int size = q.size();
+
+            while (size-- > 0) {
+                TreeNode* rn = q.front(); q.pop();// rn : remove Node
+                if (level == ans.size())
+                    ans.push_back(extra);
+                ans[level].push_back(rn->val);
+
+                if (rn->left != nullptr)
+                    q.push(rn->left);
+                if (rn->right != nullptr)
+                    q.push(rn->right);
+            }
+
+            level++;
+        }
+
+        return ans;
+    }
