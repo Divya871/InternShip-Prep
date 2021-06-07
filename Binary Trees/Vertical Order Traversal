@@ -46,3 +46,49 @@ while(minHL<=maxHL)
   res.push_back(map[minHL++]);
 }
 return res;}
+
+
+=====USING WIDTH OF BT=====
+
+ 
+void width(TreeNode *root, int hl, vector<int> &ans)
+{
+    if (root == nullptr)
+        return;
+
+    ans[0] = min(hl, ans[0]);
+    ans[1] = max(hl, ans[1]);
+
+    width(root->left, hl - 1, ans);
+    width(root->right, hl + 1, ans);
+}
+
+vector<vector<int>> verticalOrderTraversal_02(TreeNode *root)
+{
+    queue<verticalPair> que;
+    vector<int> minMax(2, 0);
+    width(root, 0, minMax);
+    int len = minMax[1] - minMax[0] + 1;
+    vector<vector<int>> res(len);
+
+    que.push(verticalPair(root, -minMax[0]));
+
+    while (que.size() != 0)
+    {
+        int size = que.size();
+        while (size-- > 0)
+        {
+            verticalPair rp = que.front();
+            que.pop();
+
+            res[rp.hl].push_back(rp.node->val);
+
+            if (rp.node->left != nullptr)
+                que.push(verticalPair(rp.node->left, rp.hl - 1));
+            if (rp.node->right != nullptr)
+                que.push(verticalPair(rp.node->right, rp.hl + 1));
+        }
+    }
+
+    return res;
+}
