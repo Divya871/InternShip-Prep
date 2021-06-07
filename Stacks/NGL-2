@@ -1,4 +1,7 @@
  TC=O(N^2),SC=O(N)
+ 
+ APPROACH----Circular Array bana lo,similar NGOR wale loops chla do,Just j ko 2*n tak chlao.
+ 
  void printNGE(int A[], int n)
 {
  
@@ -30,20 +33,22 @@
 
 TC=O(n^2),SC=O(1)
 
+APPROACh----Simple NGOR wala sab kuch bas append krte hue mod lelo.
+
 void printNGE(int A[], int n)
 {
-    int k;
+    int next;
     for (int i = 0; i < n; i++) {
       
-        k = -1; //
+        next = -1; //
         for (int j = i + 1; j < n + i; j++) {
             if (A[i] < A[j % n]) {
                 printf("%d ", A[j % n]);
-                k = 1;
+                next= 1;
                 break;
             }
         }
-        if (k == -1)
+        if (next == -1)
             printf("-1 ");
     }
 }
