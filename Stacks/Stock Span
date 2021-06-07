@@ -1,5 +1,7 @@
 ===STATIC DATA AAYEGA TOH===
 
+Traverse the input price array. For every element being visited, traverse elements on the left of it and increment the span value of it while elements on the left side are smaller.
+Following is the implementation of this method:
 TC=O(N^2),SC=O(1)
 
 void calculateSpan(int price[], int n, int S[])
