@@ -1,0 +1,54 @@
+class verticalPair
+{
+public:
+    Node *node = nullptr;
+    int hl = 0; // horizontal Level
+
+    verticalPair(Node *node, int hl)
+    {
+        this->node = node;
+        this->hl = hl;
+    }
+};
+
+void width(Node *root, int hl, vector<int> &ans)
+{
+    if (root == nullptr)
+        return;
+
+    ans[0] = min(hl, ans[0]);
+    ans[1] = max(hl, ans[1]);
+
+    width(root->left, hl - 1, ans);
+    width(root->right, hl + 1, ans);
+}
+
+ vector <int> bottomView(Node *root)
+{
+    queue<verticalPair> que;
+    vector<int> minMax(2, 0);
+    width(root, 0, minMax);
+    int len = minMax[1] - minMax[0] + 1;
+    vector<int> res(len, 0);
+
+    que.push(verticalPair(root, -minMax[0]));
+
+    while (que.size() != 0)
+    {
+        int size = que.size();
+        while (size-- > 0)
+        {
+            verticalPair rp = que.front();
+            que.pop();
+
+            res[rp.hl] = rp.node->data;
+
+            if (rp.node->left != nullptr)
+                que.push(verticalPair(rp.node->left, rp.hl - 1));
+            if (rp.node->right != nullptr)
+                que.push(verticalPair(rp.node->right, rp.hl + 1));
+        }
+    }
+
+    return res;
+}
