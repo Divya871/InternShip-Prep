@@ -1,0 +1,48 @@
+TC=O(N),SC=O(N)-Queue Space
+
+ class verticalPair
+{
+public:
+    TreeNode *node = nullptr;
+    int hl = 0; // horizontal Level
+
+    verticalPair(TreeNode *node, int hl)
+    {
+        this->node = node;
+        this->hl = hl;
+    }
+};
+
+vector<vector<int>> verticalOrderTraversal(TreeNode *root)
+{
+    queue<verticalPair> que;
+    que.push(verticalPair(root, 0));
+
+    int minHL = 0, maxHL = 0;
+    unordered_map<int, vector<int>> map;
+
+    while (que.size() != 0)
+    {
+        int size = que.size();
+        while (size-- > 0)
+        {
+            verticalPair rp = que.front();
+            que.pop();
+
+            map[rp.hl].push_back(rp.node->val);
+            minHL = min(minHL, rp.hl);
+            maxHL = max(maxHL, rp.hl);
+
+            if (rp.node->left != nullptr)
+                que.push(verticalPair(rp.node->left, rp.hl - 1));
+            if (rp.node->right != nullptr)
+                que.push(verticalPair(rp.node->right, rp.hl + 1));
+        }
+    }
+
+vector<vector<int>>res;
+while(minHL<=maxHL)
+{
+  res.push_back(map[minHL++]);
+}
+return res;}
