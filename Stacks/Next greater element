@@ -1,5 +1,7 @@
 TC=O(N^2),SC=O(1)
 
+APPROACH- USE 2 loops. For the first loop,pick the elements one by one.FOr the second loop,check if(arr[i]<arr[j), if it is true then update it and break. ELSE simply move.
+
  vector<long long> nextLargerElement(vector<long long> arr, int n){
         // Your code here
         int next, i, j;
@@ -20,6 +22,10 @@ TC=O(N^2),SC=O(1)
 
 
 TC=O(n),SC=O(n)
+
+APPROACH---Fill the stack until the top element is greater than than the array elements. When an element greater than the top of the stack is encountered,
+put that element at the index of new array where the top element is in the original array till the stack is empty or a larger element is encountered. 
+Then push the element in the stack
 
 vector<long long> nextLargerElement(vector<long long> arr, int n){
         // Your code here
