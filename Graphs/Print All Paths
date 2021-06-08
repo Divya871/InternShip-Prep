@@ -1,0 +1,13 @@
+int printAllPath(int src,int dest,vector<bool>&vis,string psf)
+{ if(src==dest)
+{ cout<<psf<<dest<<endl;
+ return 1;}
+ 
+ int count=0;
+ vis[src]=true;
+ for(Edge e:graph[src])
+ {if(!vis[e.v])
+ {count+=printAllPath(e.v,dest,vis,psf+to_string(src)+" ");}
+ 
+ vis[src]=false;}
+ return count;}
