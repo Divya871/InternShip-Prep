@@ -1,0 +1,49 @@
+// ADD EDGE
+
+void addEdge(int u,int v,int w)
+{
+graph[u].push_back(Edge(v,w));
+graph[v].push_back(Edge(u,w));
+}
+
+// DISPLAY
+
+void display()
+{
+for(int i=0;i<n;i++)
+{ cout<<i<<"->";}
+for(Edge e:graph[i])
+{cout<<"("<<e.v<<","<<e.w<<")";
+}
+cout<<endl;}
+
+OUTPUT->
+
+0->(1,10),(3,10)
+1->(0,10),(2,10)
+
+
+//REMOVE EDGE
+
+int findEdge(int u,int v)
+{ int idx=-1;
+  for(int i=0;i<graph[u].size();i++)
+  {if(graph[u][i].v==v)
+  {idx=i;break;}}
+  return idx;}
+  
+  void removeEdge(int u,int v)
+  { int idx1=findEdge(u,v);
+  int idx2=findEdge(v,u);
+  
+  graph[u].erase(graph[u].begin()+idx+1);
+  graph[v].erase(graph[v].begin()+idx2);
+  }
+  
+  
+ //REMOVE VERTEX
+ 
+ void removeVtx(int u)
+ {for(int i=graph[u].size()-1;i>=0;i--)
+ {int v=graph[u][i].v;
+ removeEdge(u,v);}}
