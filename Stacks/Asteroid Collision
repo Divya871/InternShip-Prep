@@ -1,4 +1,18 @@
- vector<int> asteroidCollision(vector<int>& arr) {
+ Complexity: O(n^2) / O(1)
+ 
+ Brute force:
+For each element see
+case 1: if this value is Positive , see the negative value on right side till you find bigger than this abs,
+case 2: if this value is -ve value, see the positive value on left side till you find bigger than this abs.
+Every time there is collision, mark the smaller asteroid dead or if they are equal, mark both dead
+
+Re-iterate on array, collect non-dead asteroid
+
+
+
+TC=O(N),SC=O(N)
+
+vector<int> asteroidCollision(vector<int>& arr) {
         
         stack<int>st;
         int n=arr.size();
