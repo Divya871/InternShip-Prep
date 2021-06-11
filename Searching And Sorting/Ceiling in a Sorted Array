@@ -1,0 +1,13 @@
+TC=O(N),SC=O(1)
+Method 1 (Linear Search) 
+
+Algorithm to search ceiling of x: 
+
+1) If x is smaller than or equal to the first element in array then return 0(index of first element) 
+2) Else Linearly search for an index i such that x lies between arr[i] and arr[i+1]. 
+3) If we do not find an index i in step 2, then return -1 
+
+
+TC=O(log n)
+
+Method-2 (Binary Search)
