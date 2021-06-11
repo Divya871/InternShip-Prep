@@ -1,0 +1,148 @@
+TC=O(N^2),SC=O(1)
+
+ -->The basic solution is to have two loops and keep track of the maximum count for all different elements. 
+ -->If maximum count becomes greater than n/2 then break the loops and return the element having maximum count. 
+ -->If the maximum count doesn’t become more than n/2 then the majority element doesn’t exist.
+ 
+ Algorithm: 
+-Create a variable to store the max count, count = 0
+-Traverse through the array from start to end.
+-For every element in the array run second loop to find the count of similar elements in the given array.  //if(arr[i]==arr[j]-->count++
+-If the count is greater than the max count update the max count and store the index in another variable.
+-If the maximum count is greater than the half the size of the array, print the element. Else print there is no majority element.
+
+int majorityElement(int arr[], int n)
+{
+        int maxCount =0;int idx=-1;
+
+        for(int i=0;i<n;i++) {
+            int count = 0;
+            for (int j=0;j<n;j++) {
+                if (arr[i]==arr[j]) {
+                    count ++;
+                }
+            }
+            
+            if(count>maxCount)
+            {
+                idx=i;
+                maxCount=count;}
+
+            if (maxCount>n/2) {
+                return arr[idx];
+            }  }
+
+        return -1;    
+ }
+ 
+ 
+ TC=O(N),SC=O(N)
+ 
+ In Hashmap(key-value pair), at value, maintain a count for each element(key) and whenever the count is greater than half of the array length, return that key(majority element).
+ 
+  
+Algorithm:
+->Create a hashmap to store a key-value pair, i.e. element-frequency pair.
+->Traverse the array from start to end.
+->For every element in the array, insert the element in the hashmap if the element does not exist as key, else fetch the value of the key ( array[i] ), and increase the value.
+->If the count is greater than half then print the majority element and break.
+->If no majority element is found print “No Majority element”
+ 
+  
+void findMajority(int arr[], int size)
+{
+    unordered_map<int, int> m;
+    for(int i = 0; i < size; i++)
+       { m[arr[i]]++;}
+    int count = 0;
+    for(auto i : m)
+    {
+        if(i.second > size / 2)
+        {
+            count =1;
+            cout << "Majority found :- " << i.first<<endl;
+            break;
+        }
+    }
+    if(count == 0)
+        cout << "No Majority element" << endl;
+}
+
+
+TC=O(N),SC=O(1)-MOORE'S VOTING ALGORITHM
+
+
+ bool isMajority(vector<int>&nums, int n, int cand)
+{
+    int count = 0;
+    for (int i = 0; i < n; i++)
+
+        if (nums[i] == cand)
+            count++;
+
+    if (count > n / 2)
+        return 1;
+
+    else
+        return 0;
+}
+
+int findCandidate(vector<int>&nums,int n)
+{int count=0,candidate=0;
+     for( int i=0;i<n;i++)
+      {if(count==0)
+      {
+        candidate=nums[i];
+      }
+      
+      if(nums[i]==candidate)
+      {
+        count++;
+      }
+       else
+         count--;}
+      
+      return candidate;}
+  
+        int majorityElement(vector<int>&nums)
+{        int n=nums.size();
+    int cand=findCandidate(nums,n);
+    
+    if(isMajority(nums,n,cand))
+    
+    {return cand;}
+    else
+    {return -1;}
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
