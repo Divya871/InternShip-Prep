@@ -1,0 +1,8 @@
+TC=O(N)+O(N)=2N,SC=O(N)
+
+->Create a map of(n+1) size and increment the freq of elements.
+->Then traverse on map and check whose freq is 0 and whose is 2.
+
+
+
+
