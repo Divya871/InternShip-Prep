@@ -72,22 +72,7 @@ void findMajority(int arr[], int size)
 TC=O(N),SC=O(1)-MOORE'S VOTING ALGORITHM
 
 
- bool isMajority(vector<int>&nums, int n, int cand)
-{
-    int count = 0;
-    for (int i = 0; i < n; i++)
-
-        if (nums[i] == cand)
-            count++;
-
-    if (count > n / 2)
-        return 1;
-
-    else
-        return 0;
-}
-
-int findCandidate(vector<int>&nums,int n)
+int findCandidate(int nums[],int n)
 {int count=0,candidate=0;
      for( int i=0;i<n;i++)
       {if(count==0)
@@ -101,26 +86,22 @@ int findCandidate(vector<int>&nums,int n)
       }
        else
          count--;}
-      
       return candidate;}
-  
-        int majorityElement(vector<int>&nums)
-{        int n=nums.size();
+      
+        int majorityElement(int nums[], int n)
+{        
     int cand=findCandidate(nums,n);
-    
-    if(isMajority(nums,n,cand))
-    
-    {return cand;}
-    else
-    {return -1;}
+    int count=0;
+    for(int i=0;i<n;i++)
+     {
+         if(nums[i]==cand)
+         {count++;}}
+         
+         if(count>n/2)
+         {return cand;}
+         else {return -1;}
      }
-
-
-
-
-
-
-
+      
 
 
 
