@@ -1,4 +1,4 @@
-Brtue force-TC=O(N^2)
+Brtue force-TC=O(N)
 A Simple Approach is to traverse the given array one by one and compare every element with given element ‘x’. If matches, then return index.
 
 TC=O(N),SC=O(1)
