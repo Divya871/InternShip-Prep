@@ -1,0 +1,20 @@
+ Optimized using the fact that the difference between all adjacent elements is at most k. 
+ ->The idea is to start comparing from the leftmost element and find the difference between the current array element and x. 
+ ->Let this difference be ‘diff’. From the given property of the array, we always know that x must be at least ‘diff/k’ away
+ ->so instead of searching one by one, we jump ‘diff/k’. 
+ 
+ int search(int arr[], int n, int x, int k)
+{
+    int i = 0;
+    while (i < n)
+    {
+        if (arr[i] == x)
+            return i;
+ 
+       
+        i = i + max(1, abs(arr[i]-x)/k);
+    }
+ 
+    cout << "number is not present!";
+    return -1;
+}
