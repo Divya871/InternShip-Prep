@@ -2,7 +2,9 @@ Brtue force-TC=O(N)
 A Simple Approach is to traverse the given array one by one and compare every element with given element ‘x’. If matches, then return index.
 
 TC=O(N),SC=O(1)
-The above solution can be Optimized using the fact that difference between all adjacent elements is 1.
+ - We can use the given property that adjacent elemnents differ by one position
+ - We'll start from 0th index & take the difference between it's value & target value. 
+ - Now jump your index to difference as we're sure that if they're differ by one, it means target value can't occur in between
 
 int search(int arr[], int n, int x)
 {
