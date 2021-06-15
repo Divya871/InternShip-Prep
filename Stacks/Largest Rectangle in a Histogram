@@ -1,4 +1,10 @@
- void NSOR(vector<int> &arr, vector<int> &ans)
+BruteForce-TC=O(N^2)
+
+A simple solution is to one by one consider all bars as starting points and calculate area of all rectangles starting with every bar.
+Finally return maximum of all possible areas.
+
+
+void NSOR(vector<int> &arr, vector<int> &ans)
 {
     int n = arr.size();
     ans.resize(n, n); //Java :  Arrays.fill(ans,n);
